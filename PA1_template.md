@@ -41,6 +41,8 @@ m <- ggplot(numberofsteps, aes(x=sumofsteps))
 m + geom_histogram(aes(fill = ..count..)) + ggtitle("Total Number of Steps Taken per Day")
 ```
 
+![plot of fig1](figure/fig1.png) 
+
 2. Calculate and report the mean and median of the total number of steps taken per day
 
 ### Mean:
@@ -48,11 +50,14 @@ m + geom_histogram(aes(fill = ..count..)) + ggtitle("Total Number of Steps Taken
 round(mean(numberofsteps$sumofsteps, na.rm = TRUE),0)
 ```
 
+* Mean: 10766
+
 #### Median:
 ```{r}
 median(numberofsteps$sumofsteps, na.rm = TRUE)
 ```
 
+* Median: 10765
 
 ## What is the average daily activity pattern?
 
@@ -73,12 +78,15 @@ qplot(x=interval, y=meanSteps, data = dailypattern,  geom = "line",
         
 ```
 
+![plot of fig2](figure/fig2.png) 
+
 2. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 
 ```{r}
 round(max,2)
 ```
 
+* 835
 
 ## Imputing missing values
 
@@ -88,6 +96,9 @@ round(max,2)
 sum(is.na(activity))
 round((sum(is.na(activity))/nrow(activity)),2)
 ```
+
+* 2304
+* 13,11%
 
 2. Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.
 AND
@@ -118,15 +129,19 @@ m2 <- ggplot(numberofsteps2, aes(x=sumofsteps))
 m2 + geom_histogram(aes(fill = ..count..)) + ggtitle("Total Number of Steps Taken per Day")
 ```
 
+![plot of fig3](figure/fig3.png) 
+
 ### Mean:
 ```{r}
 round(mean(numberofsteps2$sumofsteps, na.rm = TRUE),0)
 ```
+*Mean = 10766
 
 #### Median:
 ```{r}
 round(median(numberofsteps2$sumofsteps, na.rm = TRUE),0)
 ```
+*Median = 10766
 
 #### Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
 
@@ -137,7 +152,8 @@ The mean stayed the same, the median changed 1 point and looks like  the higher 
 
 1. Create a new factor variable in the dataset with two levels - "weekday" and "weekend" indicating whether a given date is a weekday or weekend day.
 
-* I'm Brazilian, my R is in Portugues, please change "sábado" to "saturday" and "domingo" to "sunday"
+* I'm Brazilian, my R is in Portuguese, please change "sábado" to "saturday" and "domingo" to "sunday"
+
 
 ```{r}
 data_no_na$date = as.Date(data_no_na$date)
@@ -165,7 +181,7 @@ xyplot(dailypattern2$meanSteps ~ dailypattern2$interval | dailypattern2$weekday,
        xlab = "Interval", ylab = "Number of steps")
 ```
 
-
+![plot of fig4](figure/fig4.png) 
 
 
 
